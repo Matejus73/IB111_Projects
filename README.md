@@ -6,4 +6,4 @@
 
 <br>
 
-- V případě dotazů či jakýchkoli problémů se neváhejte ozvat vyučujícím v diskuzním fóru v ISu.
+- V případě dotazů či jakýchkoli problémů se neváhejte ozvat vyučujícím v diskusním fóru v ISu.
