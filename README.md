@@ -6,4 +6,6 @@
 
 <br>
 
-- V případě dotazů či jakýchkoli problémů se neváhejte ozvat vyučujícím v diskusním fóru v ISu.
+- Tip: Pokud si chcete vyzkoušet práci s GitLabem, pak se přepněte na větev `demo` a vyzkoušejte si odevzdání úloh z demo týdne.
+
+- V případě dotazů či jakýchkoli problémů se neváhejte ozvat vyučujícím v diskuzním fóru v ISu.
