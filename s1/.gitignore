@@ -1,0 +1,27 @@
+# Python and mypy cache
+__pycache__/
+*.py[cod]
+*~
+.mypy_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# System metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Block documents and media files
+*.pdf
+*.mp4
+*.avi
+*.mov
+*.mkv

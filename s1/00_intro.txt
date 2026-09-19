@@ -1,0 +1,12 @@
+# S.1. Sada úloh k prvnímu bloku
+
+V prvním bloku jsou následující domácí úkoly:
+
+ ‹a_primes› – rozklad na prvočinitele,
+ ‹b_race› – hra ve stylu „Člověče, nezlob se“ s číselnou reprezentací,
+ ‹c_mancala› – mankalová hra,
+ ‹d_2048› – jednorozměrná varianta hry 2048,
+ ‹e_freecell› – zhodnocení stavu hry FreeCell.
+
+První dva úkoly vyžadují pouze znalosti základních příkazů a celočíselné
+aritmetiky; zbývající tři úkoly používají seznamy.
