@@ -1,0 +1,27 @@
+# Datové struktury I.
+
+V této kapitole se budeme opět zabývat zabudovanými datovými
+strukturami: z třetí kapitoly již známe «seznam» a «n-tici», tento
+týden přibudou «zásobník» (stack), «slovník» (dictionary) a
+«množina» (set).
+
+Přípravy:
+
+ 1. ‹attendance›   – práce s množinou,
+ 2. ‹worktime›     – práce se slovníkem,
+ 3. ‹sublist›      – algoritmus nad seznamy čísel,
+ 4. ‹sum›          – hledání součtu ve dvojici seznamů,
+ 5. ‹course›       – práce se slovníkem známek,
+ 6. ‹colours›      – práce se slovníkem barev v reprezentaci RGB.
+
+Rozšířené úlohy:
+
+ 1. ‹transitive›   – ověření tranzitivity binární relace,
+ 2. ‹setops›       – sjednocení a průnik množin,
+ 3. ‹setdiff›      – rozdíl a symetrický rozdíl množin,
+ 4. ‹maps›         – operace se zobrazeními pomocí slovníků,
+ 5. ‹life›         – výpočet hry života.
+
+Volitelné úlohy:
+
+ 1. ‹bugs›         – simulace šíření energie.
