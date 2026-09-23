@@ -25,7 +25,7 @@ def nested(n):
     while n >= clen:
         n -= clen
         clen += 1
-    return(n+1)
+    return n+1
 
 
 # Dále napište funkci ‹nested_sum›, která spočítá sumu prvních ‹n› členů
@@ -33,16 +33,17 @@ def nested(n):
 
 def nested_sum(n):
     suma = 0
-    x = 1
     count = 1
 
     for i in range(1, n):
         for j in range(1, i):
             if count == n:
                 suma += j
-                return suma        
+                return suma
             suma += j
             count += 1
+    return None
+
 
 def main():
     assert nested(0) == 1
