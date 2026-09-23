@@ -16,10 +16,22 @@ from ib111 import week_01  # noqa
 # Očekávaný výsledek pro volání ‹sequence(2, 3, 2)› je tedy ‹8›.
 
 def sequence(n, k, initial):
-    pass
+    if n > 0:
+        for j in range(n):
+            m = -1
+            spolu = 0
+            for i in range(1, k+1):
+                spolu += initial * i * m
+                m *= -1
+            initial = spolu
+    elif n < 0:
+        return 0
+
+    return initial
 
 
 def main():
+
     assert sequence(2, 3, 2) == 8
     assert sequence(0, 1, 7) == 7
     assert sequence(1, 1, 7) == -7
