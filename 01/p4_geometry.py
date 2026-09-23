@@ -7,21 +7,37 @@ from ib111 import week_01  # noqa
 # celými čísly ‹a›, ‹b› a ‹c›.
 
 def is_right(a, b, c):
-    pass
+    for i in range(4):
+        if a ** 2 + b ** 2 == c ** 2 and a + b > c:
+            return True
+        else:
+            x = a
+            a = b
+            b = c
+            c = x
+    return False
 
 
 # Dále napište predikát, který je pravdivý, popisují-li parametry
 # ‹a›, ‹b› a ‹c› rovnostranný trojúhelník.
 
 def is_equilateral(a, b, c):
-    pass
+    return a == b == c
 
 
 # Konečně napište predikát, který je pravdivý, popisují-li parametry
 # ‹a›, ‹b› a ‹c› rovnoramenný trojúhelník.
 
 def is_isosceles(a, b, c):
-    pass
+    for i in range(4):
+        if a == b and a + b > c:
+            return True
+        else:
+            x = a
+            a = b
+            b = c
+            c = x
+    return False
 
 
 def main():
