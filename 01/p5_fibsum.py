@@ -7,7 +7,17 @@ from ib111 import week_01  # noqa
 # 2 + 8 + 34›.
 
 def fibsum(n):
-    pass
+    clen1 = 1
+    clen2 = 2
+    x = 0
+    suma = 0
+    while x < n:
+        clen2 += clen1
+        clen1 = clen2 - clen1
+        if clen1 % 2 == 0:
+            suma += clen1
+            x += 1
+    return suma
 
 
 def main():
