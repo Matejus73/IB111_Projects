@@ -21,15 +21,28 @@ from ib111 import week_01  # noqa
 # Vaším úkolem je najít ‹n›-tý prvek posloupnosti ⟦B⟧.
 
 def nested(n):
-    pass
+    clen = 1
+    while n >= clen:
+        n -= clen
+        clen += 1
+    return(n+1)
 
 
 # Dále napište funkci ‹nested_sum›, která spočítá sumu prvních ‹n› členů
 # této posloupnosti.
 
 def nested_sum(n):
-    pass
+    suma = 0
+    x = 1
+    count = 1
 
+    for i in range(1, n):
+        for j in range(1, i):
+            if count == n:
+                suma += j
+                return suma        
+            suma += j
+            count += 1
 
 def main():
     assert nested(0) == 1
