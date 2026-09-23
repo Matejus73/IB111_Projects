@@ -33,15 +33,15 @@ def nested(n):
 
 def nested_sum(n):
     suma = 0
-    count = 1
-
-    for i in range(1, n):
-        for j in range(1, i):
-            if count == n:
-                suma += j
-                return suma
-            suma += j
+    count = 0
+    if n == 0:
+        return 0
+    for i in range(1, n + 1):
+        for j in range(1, i + 1):
             count += 1
+            suma += j
+            if count == n:
+                return suma
     return None
 
 
