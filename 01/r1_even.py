@@ -6,8 +6,10 @@ from ib111 import week_01  # noqa
 # ⟦sₙ = ∑ᵢ₌₁ⁿ aᵢ = ∑ᵢ₌₁ⁿ 4i²⟧.
 
 def even(n):
-    pass
-
+    suma = 0
+    for i in range(1, n + 1):
+        suma += 4 * i ** 2
+    return suma
 
 def main():
     assert even(1) == 4

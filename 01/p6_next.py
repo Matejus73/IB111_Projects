@@ -1,9 +1,10 @@
 from ib111 import week_01  # noqa
-
+import math
 
 # Napište funkci, která pro zadané celé číslo ‹number›
 # najde nejbližší větší číslo, které je násobkem kladného
 # celého čísla ‹k›.
+
 
 def next_multiple(number, k):
     i = 0
@@ -23,7 +24,7 @@ def next_prime(number):
         if number == 1:
             return 2
         number += 1
-        for i in range(number - 1, 1, -1):
+        for i in range(round(math.sqrt(number)) - 1, 1, -1):
             if number % i != 0:
                 is_prime = True
             else:
@@ -33,6 +34,7 @@ def next_prime(number):
 
 
 def main():
+
     assert next_multiple(1, 2) == 2
     assert next_multiple(10, 7) == 14
     assert next_multiple(10, 5) == 15
