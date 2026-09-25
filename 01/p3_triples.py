@@ -17,17 +17,18 @@ import math
 def largest_triple(max_side):
     max_o = 0
 
-    for a in range(max_side - 1, 1, -1):
-        for b in range(max_side - 1, a + 1, -1):
+    for a in range(max_side, 0, -1):
+        for b in range(max_side, 0, -1):
             c = math.sqrt(a ** 2 + b ** 2)
             if max(a, b, c) < max_side:
                 break
-            if round(c) == c and a + b + c > max_o:
+            if round(c) == c and a + b + c > max_o and max(a, b) < max_side:
                 max_o = a + b + c
     return max_o
 
 
 def main():
+
     assert largest_triple(10) == 24
     assert largest_triple(25) == 72
     assert largest_triple(100) == 288
