@@ -7,34 +7,38 @@ import math
 
 
 def next_multiple(number, k):
-    i = 0
-    while i <= number:
-        i += k
-        if i > number:
-            return i
-    return None
+    return (number // k + 1) * k
 
 # Dále napište funkci, která pro zadané kladné celé číslo
 # ‹number› najde nejbližší větší prvočíslo.
 
 
+def prime(number):
+    if number < 2:
+        return False
+    elif number == 2 or number == 3:
+        return True
+    elif number % 2 == 0:
+        return False
+    else:
+        for i in range(3, math.isqrt(number) + 1, 2):
+            if number % i == 0:
+                return False
+    return True
+
+
 def next_prime(number):
-    is_prime = False
-    while not is_prime:
-        if number == 1 or number == 2:
-            return number + 1
+    if number < 2:
+        return 2
+    number += 1
+    if number > 2 and number % 2 == 0:
         number += 1
-        for i in range(2, math.ceil(math.sqrt(number))):
-            if number % i != 0:
-                is_prime = True
-            else:
-                is_prime = False
-                break
+    while not prime(number):
+        number += 2
     return number
 
 
 def main():
-
     assert next_multiple(1, 2) == 2
     assert next_multiple(10, 7) == 14
     assert next_multiple(10, 5) == 15
