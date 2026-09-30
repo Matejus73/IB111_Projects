@@ -39,35 +39,37 @@ def first_day(year):
 
 
 def workdays(year):
-    den = first_day(year)
+    day = first_day(year)
     work = 0
     for i in range(1, 13):
         if i == 2 and year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
-            dni = 29
+            month_day = 29
         elif i == 2:
-            dni = 28
+            month_day = 28
         elif i == 4 or i == 6 or i == 9 or i == 11:
-            dni = 30
+            month_day = 30
         else:
-            dni = 31
+            month_day = 31
 
-        for j in range(1, dni + 1):
-            if den <= 4 and (j != 1 or i != 1) and \
-                (j != 1 or i != 5) and \
-                (j != 8 or i != 5) and \
-                (j != 5 or i != 7) and \
-                (j != 6 or i != 7) and \
-                (j != 28 or i != 9) and \
-                (j != 28 or i != 10) and \
-                (j != 17 or i != 11) and \
-                (j != 24 or i != 12) and \
-                (j != 25 or i != 12) and \
-                    (j != 26 or i != 12):
+        for j in range(1, month_day + 1):
+            if (day <= 4
+                and (j != 1 or i != 1)
+                and (j != 1 or i != 5)
+                and (j != 8 or i != 5)
+                and (j != 5 or i != 7)
+                and (j != 6 or i != 7)
+                and (j != 28 or i != 9)
+                and (j != 28 or i != 10)
+                and (j != 17 or i != 11)
+                and (j != 24 or i != 12)
+                and (j != 25 or i != 12)
+                and (j != 26 or i != 12)
+            ):
                 work += 1
-            if den < 6:
-                den += 1
+            if day < 6:
+                day += 1
             else:
-                den = 0
+                day = 0
     return work - 2
 
 

@@ -21,22 +21,22 @@ from ib111 import week_02  # noqa
 def is_valid_card(number):
     control = number % 10
     number = (number - control) // 10
-    parneCislo = True
-    countNumber = number
-    finalNumber = 0
-    while countNumber >= 1:
-        cifra = countNumber % 10
-        if parneCislo:
-            if cifra * 2 > 9:
-                finalNumber += (cifra * 2) - 9
+    even_num = True
+    count_num = number
+    final_num = 0
+    while count_num >= 1:
+        digit = count_num % 10
+        if even_num:
+            if digit * 2 > 9:
+                final_num += (digit * 2) - 9
             else:
-                finalNumber += cifra * 2
-            parneCislo = False
+                final_num += digit * 2
+            even_num = False
         else:
-            finalNumber += cifra
-            parneCislo = True
-        countNumber //= 10
-    return (finalNumber + control) % 10 == 0
+            final_num += digit
+            even_num = True
+        count_num //= 10
+    return (final_num + control) % 10 == 0
 
 
 def main():
