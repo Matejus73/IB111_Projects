@@ -19,7 +19,24 @@ from ib111 import week_02  # noqa
 # deseti, číslo karty je platné.
 
 def is_valid_card(number):
-    pass
+    control = number % 10
+    number = (number - control) // 10
+    parneCislo = True
+    countNumber = number
+    finalNumber = 0
+    while countNumber >= 1:
+        cifra = countNumber % 10
+        if parneCislo:
+            if cifra * 2 > 9:
+                finalNumber += (cifra * 2) - 9
+            else:
+                finalNumber += cifra * 2
+            parneCislo = False
+        else:
+            finalNumber += cifra
+            parneCislo = True
+        countNumber //= 10
+    return (finalNumber + control) % 10 == 0
 
 
 def main():

@@ -16,7 +16,19 @@ from ib111 import week_02  # noqa
 
 
 def power_digit_sum(number):
-    pass
+    number7 = 0
+    while number >= 1:
+        number7 *= 10
+        number7 += number % 7
+        number //= 7
+
+    i = 1
+    suma = 0
+    while number7 >= 1:
+        suma += (number7 % 10) ** i
+        number7 //= 10
+        i += 1
+    return suma
 
 
 def main() -> None:

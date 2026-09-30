@@ -26,7 +26,16 @@ from ib111 import week_02  # noqa
 #     hodnotou zlomkové části ⟦(1/q)⟧.
 
 def continued_fraction(nom, denom, index):
-    pass
+    koeficient = 0
+    for i in range(0, index + 1):
+        if denom == 0:
+            return 0
+        koeficient = nom // denom
+        zostatok = nom % denom
+        nom = denom
+        denom = zostatok
+
+    return koeficient
 
 
 def main():

@@ -14,7 +14,12 @@ def poly(x):
 
 
 def maximum(low, high):
-    pass
+    top = low
+    for i in range(low, high + 1):
+        if poly(i) > poly(top):
+            top = i
+
+    return top
 
 
 def main():
