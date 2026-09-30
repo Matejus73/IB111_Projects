@@ -63,8 +63,7 @@ def workdays(year):
                 and (j != 17 or i != 11)
                 and (j != 24 or i != 12)
                 and (j != 25 or i != 12)
-                and (j != 26 or i != 12)
-            ):
+                    and (j != 26 or i != 12)):
                 work += 1
             if day < 6:
                 day += 1
