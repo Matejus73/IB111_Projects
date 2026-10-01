@@ -1,4 +1,5 @@
-from ib111 import week_01  # noqa
+from ib111 import week_01
+from math import isqrt
 
 
 # Napište čistou funkci ‹nth_smallest_prime_divisor›, která vrátí ‹index›-té
@@ -16,10 +17,29 @@ from ib111 import week_01  # noqa
 # chytrá řešení, jen je třeba nedělat zbytečnou práci navíc.)
 
 def nth_smallest_prime_divisor(num, index):
-    pass
+    i = 2
+    curent_index = 0
+    while i <= num:
+        is_prime = True
+        square = isqrt(i) + 1
+        for j in range(2, square):
+            if i % j == 0:
+                is_prime = False
+                break
+
+        if is_prime and num % i == 0:
+            num //= i
+            curent_index += 1
+            if curent_index == index:
+                return i
+            i = 2
+        else:
+            i += 1
+    return None
 
 
 def main():
+    # print(nth_smallest_prime_divisor(20, 1))
     assert nth_smallest_prime_divisor(20, 1) == 2
     assert nth_smallest_prime_divisor(42350, 2) == 5
     assert nth_smallest_prime_divisor(42350, 3) == 5
