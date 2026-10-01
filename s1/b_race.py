@@ -45,11 +45,56 @@ from ib111 import week_01  # noqa
 # (Nemusí být nijak shora omezené; předpokládejte, že máme kostky s různě
 # velkými čísly.)
 
+def toFive(arena):
+    arena_to_5 = arena
+    arena_in_5 = 0
+    exponent = 0
+    while arena_to_5 > 0:
+        arena_in_5 += (arena_to_5 % 5) * 10 ** exponent
+        exponent += 1
+        arena_to_5 //= 5
+    return arena_in_5
+
+
 def play(arena, player, throw):
-    pass
+
+    arena_in_5_default = toFive(arena)
+
+    player_found = False
+    curent_index = 0
+    player_pos = 0
+    arena_in_5 = arena_in_5_default
+
+    while arena_in_5 > 0:
+        curent_index += 1
+        on_index = arena_in_5 % 10
+        if on_index == player:
+            player_found = True
+            player_pos = curent_index
+            arena_in_5 //= 10
+            break
+        arena_in_5 //= 10
+
+    kickout_player = 0
+    arena_in_5 = arena_in_5_default
+    for i in range(throw + player_pos):
+        on_index = arena_in_5 % 10
+        arena_in_5 //= 10
+
+    if on_index != 0:
+        kickout_player = on_index
+
+    arena -= kickout_player * (5 ** (player_pos + throw - 1))
+
+    if player_found:
+        arena -= player * (5 ** (player_pos - 1))
+    arena += player * (5 ** (player_pos + throw - 1))
+
+    return arena
 
 
 def main():
+    # print(play(12510, 1, 2))
     for p in range(1, 5):
         assert play(0, p, 1) == p
 
