@@ -8,7 +8,29 @@ from ib111 import week_03  # noqa
 # čistá). Pokuste se funkci naprogramovat «efektivně».
 
 def merge(a, b):
-    pass
+    result = []
+    index_a = 0
+    index_b = 0
+
+    for i in range(len(a)+len(b)):
+        if index_a == len(a):
+            result.append(b[index_b])
+            index_b += 1
+            continue
+
+        if index_b == len(b):
+            result.append(a[index_a])
+            index_a += 1
+            continue
+
+        if a[index_a] <= b[index_b]:
+            result.append(a[index_a])
+            index_a += 1
+        else:
+            result.append(b[index_b])
+            index_b += 1
+
+    return result
 
 
 def main():
