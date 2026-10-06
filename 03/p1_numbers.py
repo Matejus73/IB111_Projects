@@ -18,14 +18,23 @@ from ib111 import week_03  # noqa
 # reprezentace v soustavě se základem ‹base›:
 
 def to_digits(number, base):
-    pass
+    num_in_base = []
+    while number > 0:
+        num_in_base.append(number % base)
+        number //= base
+    return base, num_in_base
 
 
 # Další funkce provádí převod opačným směrem, z ciferné
 # reprezentace ‹number› vytvoří hodnotu typu ‹int›:
 
+
 def from_digits(number):
-    pass
+    base, num_in_base = number
+    result = 0
+    for i, j in enumerate(num_in_base):
+        result += j * base ** i
+    return result
 
 
 # Konečně funkce ‹convert_digits› převede ciferný zápis z jedné
@@ -33,7 +42,7 @@ def from_digits(number):
 # jednoduchá.
 
 def convert_digits(number, base):
-    pass
+    return to_digits(from_digits(number), base)
 
 
 def main():
