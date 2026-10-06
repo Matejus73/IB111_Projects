@@ -8,7 +8,25 @@ from ib111 import week_03  # noqa
 # čísla z rozsahu [0, 100] (včetně).
 
 def histogram(data):
-    pass
+    result = []
+    counted_nums = 0
+    instances = 0
+
+    for i in range(0, 101):
+        for j in data:
+            if j == i:
+                instances += 1
+                counted_nums += 1
+
+        if instances != 0:
+            package = i, instances
+            result.append(package)
+            instances = 0
+
+        if counted_nums == len(data):
+            break
+
+    return result
 
 
 def main() -> None:
