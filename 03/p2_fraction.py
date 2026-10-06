@@ -31,7 +31,17 @@ from ib111 import week_03  # noqa
 # denominator)›.
 
 def continued_fraction(coefficients):
-    pass
+    denom = coefficients[len(coefficients) - 2]
+    nom = coefficients[len(coefficients) - 1]
+    remain = 1
+    for i in range(len(coefficients), 1, -1):
+
+        denom = denom * nom + remain
+        remain = nom
+        nom = denom
+        denom = coefficients[i - 3]
+
+    return nom, remain
 
 
 def main():
