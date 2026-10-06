@@ -56,7 +56,27 @@ from ib111 import week_03  # noqa
 # jeden krok výpočtu.
 
 def cellular_step(state):
-    pass
+    old_state = [0]
+
+    for _, i in enumerate(state):
+        old_state.append(i)
+    old_state.append(0)
+    new_state = []
+
+    for i in range(1, len(old_state) - 1):
+
+        if old_state[i] == 0:
+            if old_state[i - 1] == 1 or old_state[i + 1] == 1:
+                new_state.append(1)
+            else:
+                new_state.append(0)
+        else:
+            if old_state[i - 1] == 1:
+                new_state.append(0)
+            else:
+                new_state.append(1)
+
+    return new_state
 
 
 def main() -> None:
