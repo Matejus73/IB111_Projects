@@ -1,4 +1,4 @@
-from ib111 import week_01
+from ib111 import week_01  # noqa
 from math import isqrt
 
 
