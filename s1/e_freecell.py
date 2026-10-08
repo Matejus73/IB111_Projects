@@ -48,13 +48,78 @@ HEARTS, DIAMONDS, CLUBS, SPADES = 0, 1, 2, 3
 # Předpokládejte, že vstupní situace je skutečnou situací ve hře (např. není
 # možné, aby se někde objevila stejná karta dvakrát).
 
+
 def can_move(cascades, cells, foundation):
-    pass
+
+    # check for emptys
+    for i in cascades:
+        if i is None:
+            return True
+
+    for i in cells:
+        if i is None:
+            return True
+
+    for i in foundation:
+        if i is None:
+            for j in cascades:
+                rank, suit = j
+                if rank == ACE:
+                    return True
+
+    # check the cascades
+    for i in cascades:
+        rank_cascades, suit_cascades = i
+        for j in cells:
+            rank_cells, suit_cells = j
+            if rank_cascades - rank_cells == 1:
+                if (suit_cascades == HEARTS or
+                    suit_cascades == DIAMONDS) and\
+                        (suit_cells == SPADES or
+                         suit_cells == CLUBS):
+                    return True
+                elif (suit_cascades == SPADES or
+                      suit_cascades == CLUBS) and\
+                        (suit_cells == HEARTS or
+                         suit_cells == DIAMONDS):
+                    return True
+
+        for j in cascades:
+            rank_cascades2, suit_cascades2 = j
+            if rank_cascades - rank_cascades2 == 1:
+                if (suit_cascades == HEARTS or
+                    suit_cascades == DIAMONDS) and\
+                        (suit_cascades2 == SPADES or
+                         suit_cascades2 == CLUBS):
+                    return True
+                elif (suit_cascades == SPADES or
+                      suit_cascades == CLUBS) and\
+                        (suit_cascades2 == HEARTS or
+                         suit_cascades2 == DIAMONDS):
+                    return True
+
+    # check the foundation
+    for i in foundation:
+        if i is not None:
+            rank_foundation, suit_foundation = i
+            for j in cells:
+                rank_cells, suit_cells = j
+                if rank_cells - rank_foundation == 1 and\
+                        suit_foundation == suit_cells:
+                    return True
+
+            for j in cascades:
+                rank_cascades, suit_cascades = j
+                if rank_cascades - rank_foundation == 1 and\
+                        suit_foundation == suit_cascades:
+                    return True
+
+    return False
 
 
 def main():
     cascades = [(2, HEARTS), (3, HEARTS), (7, CLUBS), (8, CLUBS)]
-    cells = [(2, CLUBS), (3, CLUBS), (4, CLUBS)]
+    cells = [(2, CLUBS), (3, CLUBS), (7, CLUBS)]
     foundations = [None, None, None, None]
     assert can_move(cascades, cells, foundations)
 
