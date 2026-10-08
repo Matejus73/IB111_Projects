@@ -63,7 +63,16 @@ from ib111 import week_03  # noqa
 # i ‹start› jsou kladná celá čísla.
 
 def init(size, start):
-    pass
+    game_board1 = []
+    game_board2 = []
+
+    for i in range(size):
+        game_board1.append(start)
+        game_board2.append(start)
+    game_board1.append(0)
+    game_board2.append(0)
+
+    return game_board1, game_board2
 
 
 # Dále napište proceduru ‹play›, která odehraje jedno kolo hry. Parametr
@@ -80,6 +89,7 @@ def init(size, start):
 # ‹PLAY_AGAIN› nebo ‹ROUND_OVER›, podle toho, jestli má aktuální hráč hrát
 # znovu nebo už skončil. Tyto konstanty jsou už definovány; nijak je neměňte.
 
+
 INVALID_POSITION = 0
 EMPTY_POSITION = 1
 ROUND_OVER = 2
@@ -87,7 +97,54 @@ PLAY_AGAIN = 3
 
 
 def play(our, their, position):
-    pass
+
+    board_size = len(our)
+    if position > board_size - 2 or position < 0:
+        return INVALID_POSITION
+
+    balls_moving = our[position]
+    if balls_moving == 0:
+        return EMPTY_POSITION
+
+    last_added = 0
+    our[position] = 0
+    on_our_side = True
+    board_size_adjust = 0
+    bank_pos = board_size - 1
+    while balls_moving > 0:
+
+        for curent_pos in range(position + 1, board_size - board_size_adjust):
+
+            if balls_moving == 0:
+                break
+            balls_moving -= 1
+            if on_our_side:
+                our[curent_pos] += 1
+            else:
+                their[curent_pos] += 1
+            last_added = curent_pos
+
+        position = -1
+        if on_our_side:
+            on_our_side = False
+            board_size_adjust = 1
+        else:
+            on_our_side = True
+            board_size_adjust = 0
+
+    if last_added == bank_pos:
+        return PLAY_AGAIN
+
+    # value is inversed because of automatic inversion at and of every round
+    if not on_our_side:
+        opposite_pos = (board_size - 2) - last_added
+
+        if our[last_added] == 1 and their[opposite_pos] > 0:
+            our[last_added] = 0
+            our[bank_pos] += 1 + their[opposite_pos]
+            their[opposite_pos] = 0
+
+    return ROUND_OVER
 
 
 def main():
