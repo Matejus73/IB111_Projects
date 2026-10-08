@@ -31,12 +31,67 @@ from ib111 import week_03  # noqa
 # modifikuje parametr ‹row› a vrací ‹True›, pokud posunem došlo k nějaké
 # změně; v opačném případě vrací ‹False›.
 
+def move(row):
+    for i in range(1, len(row)):
+        if row[i] == 0:
+            continue
+
+        while row[i - 1] == 0 and i != 0:
+            row[i - 1] += row[i]
+            row[i] = 0
+            if i != 0:
+                i -= 1
+
+
+def merge(row):
+    for i in range(1, len(row)):
+        if row[i] == 0:
+            continue
+
+        while row[i - 1] == row[i]:
+            row[i - 1] += row[i]
+            row[i] = 0
+
+
+def reverse(row):
+    reversed_row = []
+    for i in range(len(row) - 1, -1, -1):
+        reversed_row.append(row[i])
+
+    for i, j in enumerate(reversed_row):
+        row[i] = j
+
+
+def slide_left(row):
+    move(row)
+    merge(row)
+    move(row)
+
+
+def slide_right(row):
+    reverse(row)
+    move(row)
+    merge(row)
+    move(row)
+    reverse(row)
+
+
 def slide(row, to_left):
-    pass
+    default_row = []
+    for i in row:
+        default_row.append(i)
+
+    if to_left:
+        slide_left(row)
+    else:
+        slide_right(row)
+
+    return not (default_row == row)
 
 
 def main():
-    row = [0, 2, 2, 0]
+    row = [2, 0, 2, 0]
+    # print(slide(row, False))
     assert slide(row, True)
     assert row == [4, 0, 0, 0]
 
