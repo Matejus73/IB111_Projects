@@ -52,67 +52,92 @@ HEARTS, DIAMONDS, CLUBS, SPADES = 0, 1, 2, 3
 def can_move(cascades, cells, foundation):
 
     # check for emptys
+    has_any_card = False
     for i in cascades:
-        if i is None:
+        if i is not None:
+            has_any_card = True
+            break
+
+    if not has_any_card:
+        for i in cells:
+            if i is not None:
+                has_any_card = True
+                break
+
+    for i in cascades:
+        if i is None and has_any_card:
             return True
 
     for i in cells:
-        if i is None:
+        if i is None and has_any_card:
             return True
 
+    # checkin for aces
     for i in foundation:
         if i is None:
             for j in cascades:
-                rank, suit = j
-                if rank == ACE:
-                    return True
+                if j is not None:
+                    rank, suit = j
+                    if rank == ACE:
+                        return True
+
+            for j in cells:
+                if j is not None:
+                    rank, suit = j
+                    if rank == ACE:
+                        return True
 
     # check the cascades
     for i in cascades:
-        rank_cascades, suit_cascades = i
-        for j in cells:
-            rank_cells, suit_cells = j
-            if rank_cascades - rank_cells == 1:
-                if (suit_cascades == HEARTS or
-                    suit_cascades == DIAMONDS) and\
-                        (suit_cells == SPADES or
-                         suit_cells == CLUBS):
-                    return True
-                elif (suit_cascades == SPADES or
-                      suit_cascades == CLUBS) and\
-                        (suit_cells == HEARTS or
-                         suit_cells == DIAMONDS):
-                    return True
+        if i is not None:
+            rank_cascades, suit_cascades = i
+            for j in cells:
+                if j is not None:
+                    rank_cells, suit_cells = j
+                    if rank_cascades - rank_cells == 1:
+                        if (suit_cascades == HEARTS or
+                            suit_cascades == DIAMONDS) and\
+                                (suit_cells == SPADES or
+                                 suit_cells == CLUBS):
+                            return True
+                        elif (suit_cascades == SPADES or
+                              suit_cascades == CLUBS) and\
+                                (suit_cells == HEARTS or
+                                 suit_cells == DIAMONDS):
+                            return True
 
         for j in cascades:
-            rank_cascades2, suit_cascades2 = j
-            if rank_cascades - rank_cascades2 == 1:
-                if (suit_cascades == HEARTS or
-                    suit_cascades == DIAMONDS) and\
-                        (suit_cascades2 == SPADES or
-                         suit_cascades2 == CLUBS):
-                    return True
-                elif (suit_cascades == SPADES or
-                      suit_cascades == CLUBS) and\
-                        (suit_cascades2 == HEARTS or
-                         suit_cascades2 == DIAMONDS):
-                    return True
+            if j is not None:
+                rank_cascades2, suit_cascades2 = j
+                if rank_cascades - rank_cascades2 == 1:
+                    if (suit_cascades == HEARTS or
+                        suit_cascades == DIAMONDS) and\
+                            (suit_cascades2 == SPADES or
+                             suit_cascades2 == CLUBS):
+                        return True
+                    elif (suit_cascades == SPADES or
+                          suit_cascades == CLUBS) and\
+                            (suit_cascades2 == HEARTS or
+                             suit_cascades2 == DIAMONDS):
+                        return True
 
     # check the foundation
     for i in foundation:
         if i is not None:
             rank_foundation, suit_foundation = i
             for j in cells:
-                rank_cells, suit_cells = j
-                if rank_cells - rank_foundation == 1 and\
-                        suit_foundation == suit_cells:
-                    return True
+                if j is not None:
+                    rank_cells, suit_cells = j
+                    if rank_cells - rank_foundation == 1 and\
+                            suit_foundation == suit_cells:
+                        return True
 
             for j in cascades:
-                rank_cascades, suit_cascades = j
-                if rank_cascades - rank_foundation == 1 and\
-                        suit_foundation == suit_cascades:
-                    return True
+                if j is not None:
+                    rank_cascades, suit_cascades = j
+                    if rank_cascades - rank_foundation == 1 and\
+                            suit_foundation == suit_cascades:
+                        return True
 
     return False
 
