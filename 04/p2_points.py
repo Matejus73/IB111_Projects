@@ -14,6 +14,7 @@ from math import sqrt
 
 Point = tuple[float, float, str]
 
+
 def distance(a: Point, b: Point) -> float:
     a_x, a_y, _ = a
     b_x, b_y, _ = b
