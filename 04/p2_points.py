@@ -12,7 +12,9 @@ from math import sqrt
 
 # Funkce ‹distance› spočte Euklidovskou vzdálenost dvou bodů ‹a› a ‹b›.
 
-def distance(a, b):
+Point = tuple[float, float, str]
+
+def distance(a: Point, b: Point) -> float:
     a_x, a_y, _ = a
     b_x, b_y, _ = b
     return sqrt((a_x - b_x) ** 2 + (a_y - b_y) ** 2)
@@ -21,7 +23,7 @@ def distance(a, b):
 # Funkce ‹leftmost_colour› v neprázdném seznamu bodů najde barvu
 # „nejlevějšího“ bodu (takového, který má nejmenší x-ovou souřadnici).
 
-def leftmost_colour(points):
+def leftmost_colour(points: list[Point]) -> str:
     x_min, _, result = points[0]
 
     for x, _, colour in points:
@@ -38,7 +40,7 @@ def leftmost_colour(points):
 # barvy). Vstupní podmínkou je, že ‹points› obsahuje alespoň jeden
 # bod barvy ‹colour›.
 
-def center_of_gravity(points, colour):
+def center_of_gravity(points: list[Point], colour: str) -> Point:
     total_x = 0.0
     total_y = 0.0
     count = 0
@@ -56,7 +58,7 @@ def center_of_gravity(points, colour):
 # podmínkou je, že seznam ‹points› musí obsahovat alespoň dva
 # různobarevné body.
 
-def average_nonmatching_distance(points):
+def average_nonmatching_distance(points: list[Point]):
     total = 0.0
     pairs = 0
 
