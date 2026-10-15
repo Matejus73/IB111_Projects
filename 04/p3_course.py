@@ -13,10 +13,9 @@ from ib111 import week_04  # noqa
 Student = tuple[int, str, int]
 Course = list[tuple[Student, str]]
 
+
 def failed(course: Course) -> list[Student]:
     return [student for student, mark in course if mark == "F"]
-
-
 
 # Funkce ‹count_passed› vrátí počet studentů, kteří úspěšně ukončili
 # kurz ‹course›, tedy z něj nemají známku ‹F›. Parametr ‹semester›
@@ -24,17 +23,17 @@ def failed(course: Course) -> list[Student]:
 # úspěšných studentů v daném semestru, jinak vrátí počet všech
 # úspěšných studentů.
 
+
 def count_passed(course: Course, semester: int | None) -> int:
-    if semester == None:
+    if semester is None:
         return len([student for student, mark in course if mark != "F"])
     else:
-        return len([mark for (_, _, curent_semester), mark in course if mark != "F" and curent_semester == semester])
-
-
-
+        return len([mark for (_, _, curent_semester), mark in course
+                    if mark != "F" and curent_semester == semester])
 
 # Funkce ‹student_grade› vrátí známku studenta s učem ‹uco›. Pokud
 # takový student v kurzu ‹course› není, vrací ‹None›.
+
 
 def student_grade(uco: int, course: Course) -> str | None:
     marks = [mark for (curent_uco, _, _), mark in course if curent_uco == uco]
