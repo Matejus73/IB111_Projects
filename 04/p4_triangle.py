@@ -34,19 +34,49 @@ def perimeter(a: float | None,
               alpha: float | None,
               beta: float | None,
               gamma: float | None) -> float | None:
-    pass
+    sides: list[float | None] = [a, b, c]
+    angles: list[float | None] = [alpha, beta, gamma]
+    valid_sides: list[float] = []
+    valid_angles: list[float] = []
+
+    for index, side in enumerate(sides):
+        if side is not None:
+            valid_sides.append(side)
+        elif angles[index] is not None:
+            valid_angles.append(angles[index]) # type: ignore
+        else:
+            return None
+
+    if len(valid_sides) == 3:
+        A, B, C = valid_sides
+        return perimeter_sss(A, B, C)
+    elif len(valid_sides) == 2:
+        A, C = valid_sides
+        Beta = valid_angles[0]
+        return perimeter_sas(A, Beta, C)
+    elif len(valid_sides) == 1:
+        B = valid_sides[0]
+        Alpha, Gamma = valid_angles
+        return perimeter_asa(Alpha, B, Gamma)
+    else:
+        return None
+
+
+
+
+
+
 
 
 # Funkce ‹perimeter_sss› spočte obvod trojúhelníku zadaného třemi stranami.
 
-def perimeter_sss(a, b, c):
+def perimeter_sss(a: float, b: float, c: float) -> float:
     return a + b + c
-
 
 # Funkce ‹perimeter_sas› spočte obvod trojúhelníku zadaného dvěma stranami a
 # nimi sevřeným úhlem.
 
-def perimeter_sas(a, angle, b):
+def perimeter_sas(a: float, angle: float, b: float) -> float:
     c = sqrt(a ** 2 + b ** 2 - 2 * a * b * cos(radians(angle)))
     return perimeter_sss(a, b, c)
 
@@ -54,7 +84,7 @@ def perimeter_sas(a, angle, b):
 # Funkce ‹perimeter_asa› spočte obvod trojúhelníku zadaného stranou a jí
 # přilehlých úhlů.
 
-def perimeter_asa(alpha, c, beta):
+def perimeter_asa(alpha: float, c: float, beta: float) -> float:
     gamma = radians(180 - alpha - beta)
     alpha = radians(alpha)
     beta = radians(beta)
@@ -68,6 +98,7 @@ def main() -> None:
         for b in range(1, 6):
             for c in range(max(abs(a - b) + 1, 1), a + b):
                 check_triangle(float(a), float(b), float(c))
+
 
 
 # Pomocné funkce pro testy, které spočítají úhel ze zadaných stran.
