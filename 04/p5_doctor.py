@@ -15,7 +15,7 @@ from ib111 import week_04  # noqa
 # od roku ‹year›. Jako výsledek vraťte seznam identifikátorů
 # pacientů.
 
-Patients = list[tuple[int, list[tuple]]]
+Patients = list[tuple[int, list[tuple[int, int, int, int]]]]
 
 
 def missing_visits(year: int, patients: Patients) -> list[int]:

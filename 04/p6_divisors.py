@@ -10,8 +10,22 @@ from ib111 import week_04  # noqa
 # Například pro vstup ‹rows = 4›, ‹cols = 2› dostaneme tabulku ‹[[1,
 # 1], [1, 2], [1, 1], [1, 2]]›.
 
-def common_divisors(rows, cols):
-    pass
+def common_divisors(rows: int, cols: int) -> list[list[int]]:
+    table = []
+    for x in range(1, rows + 1):
+        row = []
+
+        for y in range(1, cols + 1):
+            divis_count = 0
+
+            for divis in range(1, max(x, y) + 1):
+                if x % divis == 0 and y % divis == 0:
+                    divis_count += 1
+            row.append(divis_count)
+
+        table.append(row)
+
+    return table
 
 
 def main() -> None:
