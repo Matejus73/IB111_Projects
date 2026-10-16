@@ -15,9 +15,24 @@ from ib111 import week_04  # noqa
 # od roku ‹year›. Jako výsledek vraťte seznam identifikátorů
 # pacientů.
 
-def missing_visits(year, patients):
-    pass
+Patients = list[tuple[int, list[tuple]]]
 
+
+def missing_visits(year: int, patients: Patients) -> list[int]:
+    missed_a_visit = []
+
+    for patient in patients:
+        id, records = patient
+        didnt_miss = False
+        for record in records:
+            year_of_visit, _, _, _ = record
+            if year_of_visit > year:
+                didnt_miss = True
+                break
+        if not didnt_miss:
+            missed_a_visit.append(id)
+
+    return missed_a_visit
 
 # Dále napište a otypujte funkci ‹patient_reports›, která vrátí
 # seznam zpráv o pacientech. Zpráva o pacientovi je čtveřice, která
@@ -29,8 +44,36 @@ def missing_visits(year, patients):
 # 89, 125, 82), (2020, 93, 120, 88)])› je ‹(93, False, False,
 # True)›.
 
-def patient_reports(patients):
-    pass
+
+def patient_reports(patients: Patients) -> list[tuple[int, bool, bool, bool]]:
+    final_list = []
+    for patient in patients:
+        id, records = patient
+        max_pulse = 0
+        prev_pulse = 0
+        did_pulse_rase = True
+        prev_val1 = 0
+        did_val1_rase = True
+        prev_val2 = 0
+        did_val2_rase = True
+        for record in records:
+            _, pulse, val1, val2 = record
+            max_pulse = max(max_pulse, pulse)
+
+            if pulse <= prev_pulse:
+                did_pulse_rase = False
+            if val1 <= prev_val1:
+                did_val1_rase = False
+            if val2 <= prev_val2:
+                did_val2_rase = False
+            prev_pulse = pulse
+            prev_val1 = val1
+            prev_val2 = val2
+
+        final_list.append((max_pulse, did_pulse_rase,
+                           did_val1_rase, did_val2_rase))
+
+    return final_list
 
 
 def main() -> None:
