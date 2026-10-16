@@ -43,7 +43,7 @@ def perimeter(a: float | None,
         if side is not None:
             valid_sides.append(side)
         elif angles[index] is not None:
-            valid_angles.append(angles[index]) # type: ignore
+            valid_angles.append(angles[index])  # type: ignore
         else:
             return None
 
@@ -61,20 +61,15 @@ def perimeter(a: float | None,
     else:
         return None
 
-
-
-
-
-
-
-
 # Funkce ‹perimeter_sss› spočte obvod trojúhelníku zadaného třemi stranami.
+
 
 def perimeter_sss(a: float, b: float, c: float) -> float:
     return a + b + c
 
 # Funkce ‹perimeter_sas› spočte obvod trojúhelníku zadaného dvěma stranami a
 # nimi sevřeným úhlem.
+
 
 def perimeter_sas(a: float, angle: float, b: float) -> float:
     c = sqrt(a ** 2 + b ** 2 - 2 * a * b * cos(radians(angle)))
@@ -99,9 +94,8 @@ def main() -> None:
             for c in range(max(abs(a - b) + 1, 1), a + b):
                 check_triangle(float(a), float(b), float(c))
 
-
-
 # Pomocné funkce pro testy, které spočítají úhel ze zadaných stran.
+
 
 def get_alpha(a: float, b: float, c: float) -> float:
     return acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c)) * 180 / pi
