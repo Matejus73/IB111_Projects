@@ -5,11 +5,16 @@ from ib111 import week_04  # noqa
 # typové anotace tak, aby prošel kontrolou nástrojem ‹mypy› bez
 # chyb.
 
+
+Points_xy = list[float]
+Points = list[tuple[float, float]]
+
+
 # Pomocné funkce.
 
-def find_slope(points, avg_x, avg_y):
-    dividend = 0.0
-    divisor = 0
+def find_slope(points: Points, avg_x: float, avg_y: float) -> float | None:
+    dividend: float = 0.0
+    divisor: float = 0
 
     for i, (x, y) in enumerate(points):
         dividend += ((x - avg_x) * (y - avg_y))
@@ -21,7 +26,7 @@ def find_slope(points, avg_x, avg_y):
     return dividend / divisor
 
 
-def find_intercept(avg_x, avg_y, beta):
+def find_intercept(avg_x: float, avg_y: float, beta: float) -> float:
     return avg_y - beta * avg_x
 
 
@@ -29,14 +34,14 @@ def find_intercept(avg_x, avg_y, beta):
 # souřadnicemi ⟦x⟧ a druhý se souřadnicemi ⟦y⟧. Výsledkem nechť je
 # dvojice ⟦(α, β)⟧.
 
-def regress_vectors(x, y):
+def regress_vectors(x: Points_xy, y: Points_xy) -> tuple[float, float] | None:
     return regress_points([(x[i], y[i]) for i in range(len(x))])
 
 
 # Druhá verze má jako parametr seznam dvojic, kde každá dvojice
 # popisuje jeden bod.
 
-def regress_points(points):
+def regress_points(points: Points) -> tuple[float, float] | None:
     avg_x = sum([x for x, _ in points]) / len(points)
     avg_y = sum([y for _, y in points]) / len(points)
 
@@ -51,14 +56,14 @@ def regress_points(points):
 
 # Výpočet residuí z dvojice seznamů.
 
-def residuals_vectors(x, y, alpha, beta):
+def residuals_vectors(x: Points_xy, y: Points_xy, alpha: float, beta: float) -> list:
     points = [(x[i], y[i]) for i in range(len(x))]
     return residuals_points(points, alpha, beta)
 
 
 # Výpočet residuí ze seznamu dvojic.
 
-def residuals_points(points, alpha, beta):
+def residuals_points(points: Points, alpha: float, beta: float) -> list:
     res = []
     for i, (x, y) in enumerate(points):
         res.append(abs(y - beta * x - alpha))

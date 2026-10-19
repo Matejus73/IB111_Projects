@@ -6,13 +6,15 @@ from ib111 import week_04  # noqa
 # můžete procvičit porozumění kódu (budete-li vědět, co která funkce
 # dělá, typové anotace se Vám budou vymýšlet lépe).
 
-def cell_value(grid, x, y):
+Grid = list[list[int]]
+
+def cell_value(grid: Grid, x: int, y: int) -> int:
     if 0 <= x < len(grid) and 0 <= y < len(grid):
         return grid[x][y]
     return 0
 
 
-def live_neighbour_count(grid, x, y):
+def live_neighbour_count(grid: Grid, x: int, y: int) -> int:
     assert x < len(grid) and y < len(grid)
 
     res = 0
@@ -22,7 +24,7 @@ def live_neighbour_count(grid, x, y):
     return res - grid[x][y]
 
 
-def next_value(grid, x, y):
+def next_value(grid: Grid, x: int, y: int) -> int:
     assert x < len(grid) and y < len(grid)
 
     live_neighbours = live_neighbour_count(grid, x, y)
@@ -35,10 +37,10 @@ def next_value(grid, x, y):
     return 0
 
 
-def step(grid):
+def step(grid: Grid) -> Grid:
     assert len(grid) > 0
 
-    res = []
+    res: Grid = []
     for i in range(len(grid)):
         res.append([])
         for j in range(len(grid[0])):
@@ -46,7 +48,7 @@ def step(grid):
     return res
 
 
-def life(grid, count):
+def life(grid: Grid, count: int) -> Grid:
     assert len(grid) > 0
     assert count >= 0
 
