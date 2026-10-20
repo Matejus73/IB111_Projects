@@ -31,8 +31,30 @@ MachineRecord = tuple[EmployeeId, TimeStamp, RecordType]
 # nejstaršího záznamu po nejnovější.
 
 def employees_with_missing_records(
+
         records: list[MachineRecord]) -> set[EmployeeId]:
-    pass
+
+    records_copy = records.copy()
+    missing = set()
+
+    for curent_i, curent_record in enumerate(records_copy):
+        emp, _, _ = curent_record
+        is_inside = False
+
+        for check_i in range(curent_i, len(records_copy)):
+            ch_emp, _, ch_type = records_copy[check_i]
+
+            if ch_emp == emp and emp != "Checked":
+                if is_inside and ch_type == ENTRY:
+                    missing.add(emp)
+                elif not is_inside and ch_type == LEAVE:
+                    missing.add(emp)
+
+                is_inside = ch_type
+
+                records_copy[check_i] = ("Checked", 0, False)
+
+    return missing
 
 
 def main() -> None:
