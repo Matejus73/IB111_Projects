@@ -13,8 +13,22 @@ from ib111 import week_05  # noqa
 
 
 def modus(marks: dict[int, str]) -> set[str]:
-    pass
+    mod_set: set = set()
+    max_count = 0
+    for mark in marks.values():
+        count = 0
+        for mark_check in marks.values():
+            if mark_check == mark:
+                count += 1
 
+        if count > max_count:
+            max_count = count
+            mod_set = set()
+            mod_set.add(mark)
+        elif count == max_count:
+            mod_set.add(mark)
+
+    return mod_set
 
 # Dále napište predikát ‹check›, který ověří, že známky jsou
 # smysluplné, tedy že odpovídají buďto předmětu ukončenému zkouškou
@@ -25,7 +39,10 @@ def modus(marks: dict[int, str]) -> set[str]:
 
 
 def check(marks: dict[int, str]) -> bool:
-    pass
+    for mark in marks.values():
+        if mark == "N" or mark == "Z":
+            return False
+    return True
 
 
 def main() -> None:

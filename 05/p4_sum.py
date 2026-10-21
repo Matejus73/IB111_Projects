@@ -9,7 +9,11 @@ from ib111 import week_05  # noqa
 # seznamů, je vyhovující.¹
 
 def sum_to_exactly(left: list[int], right: list[int], to: int) -> bool:
-    pass
+    for i in left:
+        for j in right:
+            if i + j == to:
+                return True
+    return False
 
 
 # Dále napište predikát ‹sum_to_at_least›, který rozhodne, zda se
@@ -18,7 +22,10 @@ def sum_to_exactly(left: list[int], right: list[int], to: int) -> bool:
 # vyžadujeme složitost lineární vzhledem k délce delšího seznamu.
 
 def sum_to_at_least(left: list[int], right: list[int], at_least: int) -> bool:
-    pass
+    if not left or not right:
+        return False
+
+    return max(left) + max(right) >= at_least
 
 
 # ¹ Existuje lepší řešení tohoto příkladu se složitostí ⟦n⋅log n⟧

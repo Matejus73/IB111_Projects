@@ -35,7 +35,22 @@ MachineRecord = tuple[EmployeeId, TimeStamp, RecordType]
 
 def seconds_spent_working(
         records: list[MachineRecord]) -> dict[EmployeeId, int]:
-    pass
+
+    result_dict: dict = {}
+
+    for record_i, record in enumerate(records):
+        id, time, type = record
+        if type == LEAVE:
+            continue
+
+        for check_i in range(record_i + 1, len(records)):
+            ch_id, ch_time, ch_type = records[check_i]
+
+            if id == ch_id and type == ENTRY and ch_type == LEAVE:
+                result_dict[id] = result_dict.get(id, 0) + ch_time - time
+                break
+
+    return result_dict
 
 
 def main() -> None:

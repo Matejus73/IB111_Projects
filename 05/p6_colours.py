@@ -25,10 +25,30 @@ from ib111 import week_05  # noqa
 
 Colour = tuple[int, int, int]
 
+def mahatan_distance(colour1: Colour, colour2: Colour):
+    r1, g1, b1 = colour1
+    r2, g2, b2 = colour2
+    return abs(r1 - r2) + abs(g1 - g2) + abs(b1 - b2)
+
 
 def nearest_colour(names: dict[str, Colour],
                    colour: Colour) -> set[str]:
-    pass
+
+    result_set: set = set()
+    min_distance = 255 * 3
+
+    for key, value in names.items():
+        curent_distance = mahatan_distance(value, colour)
+
+        if curent_distance < min_distance:
+            min_distance = curent_distance
+            result_set = set()
+            result_set.add(key)
+        elif curent_distance == min_distance:
+            result_set.add(key)
+
+    return result_set
+
 
 
 def main() -> None:
