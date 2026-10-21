@@ -36,7 +36,7 @@ MachineRecord = tuple[EmployeeId, TimeStamp, RecordType]
 def seconds_spent_working(
         records: list[MachineRecord]) -> dict[EmployeeId, int]:
 
-    result_dict: dict = {}
+    result_dict: dict[EmployeeId, int] = {}
 
     for record_i, record in enumerate(records):
         id, time, type = record

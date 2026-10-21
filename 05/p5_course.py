@@ -13,7 +13,7 @@ from ib111 import week_05  # noqa
 
 
 def modus(marks: dict[int, str]) -> set[str]:
-    mod_set: set = set()
+    mod_set: set[str] = set()
     max_count = 0
     for mark in marks.values():
         count = 0
