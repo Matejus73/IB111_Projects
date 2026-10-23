@@ -15,17 +15,16 @@ from ib111 import week_05  # noqa
 # delšího vstupního seznamu.
 
 def largest_common_sublist_sum(left: list[int], right: list[int]) -> int:
-    smaller = min(left, right)
-    bigger = max(left, right)
     suma = 0
     max_suma = 0
-    for i in range(len(smaller) - 1, -1, -1):
-        for j in range(len(bigger) - 1, -1, -1):
-            if smaller[i] == bigger[j]:
+    for i in range(len(left)):
+        for j in range(len(right)):
+            if left[i] == right[j]:
                 k = 1
-                suma = smaller[i]
-                while smaller[i - k] == bigger[j - k]:
-                    suma += smaller[i - k]
+                suma = left[i]
+                while (i - k >= 0 and j - k >= 0) and\
+                        left[i - k] == right[j - k]:
+                    suma += left[i - k]
                     k += 1
 
             max_suma = max(suma, max_suma)

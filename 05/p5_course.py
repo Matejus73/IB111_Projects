@@ -39,10 +39,28 @@ def modus(marks: dict[int, str]) -> set[str]:
 
 
 def check(marks: dict[int, str]) -> bool:
+    zk_marks = ["A", "B", "C", "D", "E", "F", "X", "-"]
+    kol_marks = ["P", "N", "-"]
+    zap_marks = ["Z", "N", "-"]
+    zk_count = 0
+    kol_count = 0
+    zap_count = 0
     for mark in marks.values():
-        if mark == "N" or mark == "Z":
-            return False
-    return True
+        for i in zk_marks:
+            if i == mark:
+                zk_count += 1
+
+        for i in kol_marks:
+            if i == mark:
+                kol_count += 1
+
+        for i in zap_marks:
+            if i == mark:
+                zap_count += 1
+
+    return zk_count == len(marks) or\
+        kol_count == len(marks) or\
+        zap_count == len(marks)
 
 
 def main() -> None:
