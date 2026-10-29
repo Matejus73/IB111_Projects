@@ -21,7 +21,19 @@ from ib111 import week_06  # noqa
 # a «pop», která by odpovídala těmto seznamům.
 
 def valid_stack_ops(pushed: list[int], popped: list[int]) -> bool:
-    pass
+
+    stack = []
+    curent_i = 0
+
+    for num in pushed:
+
+        stack.append(num)
+
+        while curent_i < len(popped) and stack[-1] == popped[curent_i]:
+            stack.pop()
+            curent_i += 1
+
+    return curent_i == len(popped)
 
 
 def main() -> None:
