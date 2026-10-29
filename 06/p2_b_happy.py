@@ -29,7 +29,7 @@ from ib111 import week_06  # noqa
 # Napište predikát, který o číslu ‹number› rozhodne, je-li
 # ‹base›-šťastné.
 
-def to_base(number: int, base:int) -> list[int]:
+def to_base(number: int, base: int) -> list[int]:
     num_in_base = []
     while number > 0:
         num_in_base.append(number % base)
