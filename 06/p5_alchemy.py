@@ -29,16 +29,12 @@ def is_creatable(owned_substances: set[str],
     for substance, components in rules.items():
         if substance == wanted:
             for component in components:
-                if is_creatable(owned_substances, rules, component) == True:
+                if is_creatable(owned_substances, rules, component):
                     flag = True
                 else:
                     return False
 
     return flag
-
-
-
-
 
 
 def main() -> None:
