@@ -18,10 +18,28 @@ from ib111 import week_06  # noqa
 # proměnné. Při vyhodnocování se Vám bude hodit zásobník a pomocný
 # slovník.
 
+def calculate(expr: dict[str, tuple[str, str, str]],
+              const: dict[str, int], var: str) -> int:
+
+        if var in expr:
+            sign, a, b = expr[var]
+            if sign == "+":
+                return calculate(expr, const, a) + calculate(expr, const, b)
+            elif sign == "*":
+                return calculate(expr, const, a) * calculate(expr, const, b)
+
+        elif var in const:
+            return const[var]
+
+        else:
+            return 0
+
 
 def evaluate(expr: dict[str, tuple[str, str, str]],
              const: dict[str, int], var: str) -> int:
-    pass
+
+    return calculate(expr, const, var)
+
 
 
 def main() -> None:

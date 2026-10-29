@@ -25,7 +25,23 @@ from ib111 import week_06  # noqa
 # číslo jedna (pevný bod byl dosažen po jednom kroku).
 
 def fixpoint(starting_set: set[int]) -> int:
-    pass
+    aplication_count = 0
+    current_set = starting_set
+    new_set = set()
+    while True:
+        for i in current_set:
+            new_set.add(i)
+            new_set.add(i//2)
+            new_set.add(i // 7)
+        if new_set != current_set:
+            aplication_count += 1
+            current_set = new_set
+            new_set = set()
+        else:
+            return aplication_count
+
+
+
 
 
 def main() -> None:

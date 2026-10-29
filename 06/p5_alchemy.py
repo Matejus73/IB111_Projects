@@ -16,9 +16,29 @@ from ib111 import week_06  # noqa
 # substancí podle daných pravidel vytvořit substanci požadovanou,
 # ‹False› jinak.
 
+
 def is_creatable(owned_substances: set[str],
                  rules: dict[str, set[str]], wanted: str) -> bool:
-    pass
+
+    flag = False
+
+    for substance in owned_substances:
+        if substance == wanted:
+            return True
+
+    for substance, components in rules.items():
+        if substance == wanted:
+            for component in components:
+                if is_creatable(owned_substances, rules, component) == True:
+                    flag = True
+                else:
+                    return False
+
+    return flag
+
+
+
+
 
 
 def main() -> None:

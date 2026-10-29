@@ -29,8 +29,32 @@ from ib111 import week_06  # noqa
 # Napište predikát, který o číslu ‹number› rozhodne, je-li
 # ‹base›-šťastné.
 
+def to_base(number, base):
+    num_in_base = []
+    while number > 0:
+        num_in_base.append(number % base)
+        number //= base
+    return num_in_base
+
+
+def digit_sqr(num_in_base):
+    suma = 0
+    for i in num_in_base:
+        suma += i ** 2
+
+    return suma
+
+
 def is_b_happy(number: int, base: int) -> bool:
-    pass
+    current_num = to_base(number, base)
+    check_set = []
+
+    while current_num != [1]:
+        check_set.append(current_num)
+        current_num = to_base(digit_sqr(current_num), base)
+        if current_num in check_set:
+            return False
+    return True
 
 
 def main() -> None:

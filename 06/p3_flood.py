@@ -1,9 +1,9 @@
 from ib111 import week_06  # noqa
 
 # «Flood fill» je algoritmus z oblasti rastrové grafiky, který
-# vyplní souvislou jednobarevnou plochu novou barvou. Postupuje
+# # vyplní souvislou jednobarevnou plochu novou barvou. Postupuje
 # tak, že nejdříve na novou barvu obarví pozici, na které začíná,
-# dále se pokusí obarvit její sousedy (pozice jiné než cílové barvy
+# # dále se pokusí obarvit její sousedy (pozice jiné než cílové barvy
 # se neobarvují), a podobně pokračuje se sousedy těchto sousedů,
 # atd. Zastaví se, dojde-li na okraj obrázku, nebo narazí na pixel,
 # který nemá žádné nové stejnobarevné sousedy.
@@ -22,7 +22,35 @@ Area = list[list[int]]
 
 
 def flood_fill(area: Area, start: Position, colour: int) -> None:
-    pass
+    start_x, start_y = start
+    x = start_x
+    y = start_y
+
+    flooded_colour = area[start_x][start_y]
+    area[start_x][start_y] = colour
+
+    row_len = len(area)
+    col_len = len(area[0])
+
+    did_spread = True
+
+    while did_spread:
+        did_spread = False
+        for x, row in enumerate(area):
+            for y, column in enumerate(row):
+                if area[x][y] == colour:
+                    if x - 1 >= 0 and area[x - 1][y] == flooded_colour:
+                        area[x - 1][y] = colour
+                        did_spread = True
+                    if x + 1 < row_len and area[x + 1][y] == flooded_colour:
+                        area[x + 1][y] = colour
+                        did_spread = True
+                    if y - 1 >= 0 and area[x][y - 1] == flooded_colour:
+                        area[x][y - 1] = colour
+                        did_spread = True
+                    if y + 1 < col_len and area[x][y + 1] == flooded_colour:
+                        area[x][y + 1] = colour
+                        did_spread = True
 
 
 def main() -> None:

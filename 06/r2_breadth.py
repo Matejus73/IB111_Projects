@@ -40,7 +40,30 @@ def example_tree() -> Tree:
 # nalézt nejdelší takový seznam.
 
 def breadth(tree: Tree) -> int:
-    pass
+    max_layer_len = 1
+    current_layer = [1]
+
+    while True:
+        new_layer = []
+
+        for i in current_layer:
+                new_layer.extend(tree[i])
+
+        if new_layer == []:
+            return max_layer_len
+
+        if len(new_layer) > max_layer_len:
+            max_layer_len = len(new_layer)
+
+        current_layer = new_layer
+
+
+
+
+
+
+
+
 
 
 def main() -> None:
