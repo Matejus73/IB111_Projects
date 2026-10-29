@@ -33,7 +33,7 @@ def histogram(data: list[int], max_amplitude: int,
     if bucket_state != 0:
         procesed_data.append(round(bucket_avg / bucket_state))
 
-    histogram_res = {}
+    histogram_res: dict = {}
     for i in procesed_data:
         if i in histogram_res:
             histogram_res[i] += 1
