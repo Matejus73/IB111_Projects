@@ -29,7 +29,7 @@ def valid_stack_ops(pushed: list[int], popped: list[int]) -> bool:
 
         stack.append(num)
 
-        while curent_i < len(popped) and stack[-1] == popped[curent_i]:
+        while len(stack) != 0 and curent_i < len(popped) and stack[-1] == popped[curent_i]:
             stack.pop()
             curent_i += 1
 

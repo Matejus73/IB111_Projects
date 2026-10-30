@@ -20,7 +20,10 @@ from ib111 import week_06  # noqa
 def is_creatable(owned_substances: set[str],
                  rules: dict[str, set[str]], wanted: str) -> bool:
 
-    flag = False
+    can_craft = False
+
+    if len(owned_substances) == 0:
+        return False
 
     for substance in owned_substances:
         if substance == wanted:
@@ -28,13 +31,17 @@ def is_creatable(owned_substances: set[str],
 
     for substance, components in rules.items():
         if substance == wanted:
+
+            new_rules = rules.copy()
+            new_rules.pop(substance)
+
             for component in components:
-                if is_creatable(owned_substances, rules, component):
-                    flag = True
+                if is_creatable(owned_substances, new_rules, component):
+                    can_craft = True
                 else:
                     return False
 
-    return flag
+    return can_craft
 
 
 def main() -> None:

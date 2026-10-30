@@ -39,16 +39,19 @@ def flood_fill(area: Area, start: Position, colour: int) -> None:
         for x, row in enumerate(area):
             for y, column in enumerate(row):
                 if area[x][y] == colour:
-                    if x - 1 >= 0 and area[x - 1][y] == flooded_colour:
+                    if x - 1 >= 0 and area[x - 1][y] == flooded_colour and area[x - 1][y] != colour:
                         area[x - 1][y] = colour
                         did_spread = True
-                    if x + 1 < row_len and area[x + 1][y] == flooded_colour:
+
+                    if x + 1 < row_len and area[x + 1][y] == flooded_colour and area[x + 1][y] != colour:
                         area[x + 1][y] = colour
                         did_spread = True
-                    if y - 1 >= 0 and area[x][y - 1] == flooded_colour:
+
+                    if y - 1 >= 0 and area[x][y - 1] == flooded_colour and area[x][y - 1] != colour:
                         area[x][y - 1] = colour
                         did_spread = True
-                    if y + 1 < col_len and area[x][y + 1] == flooded_colour:
+
+                    if y + 1 < col_len and area[x][y + 1] == flooded_colour and area[x][y + 1] != colour:
                         area[x][y + 1] = colour
                         did_spread = True
 
