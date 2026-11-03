@@ -1,11 +1,17 @@
-# Vítejte ve Vašem repozitáři pro odevzdávání úkolů z předmětu IB111 Základy programování
+# IB111 Projects
 
-- Návod k instalaci vývojového prostředí, ke stažení zadání, k jejich odevzdání a zobrazení výsledků najdete v <a href="https://is.muni.cz/auth/el/fi/podzim2026/IB111/um/text/ib111.help.html" target="_blank">ib111.help.html souboru</a> ve studijních materiálech v ISu.
-- Pokud hledáte aplikaci k jednoduchému odevzdání, pak ji najdete na <a href="https://ib111.pages.fi.muni.cz/submit/" target="_blank">https://ib111.pages.fi.muni.cz/submit</a>.
-- Ostatní materiály (sbírku, přehled používaného jazyka) najdete rovněž ve <a href="https://is.muni.cz/auth/el/fi/podzim2026/IB111/um/text/" target="_blank">studijních materiálech v ISu</a>.
+This repository contains my personal solutions for the programming assignments in the **IB111 (Základy programovania)** course at the Faculty of Informatics, Masaryk University (FI MUNI).
 
-<br>
+## Repository Structure
 
-- Tip: Pokud si chcete vyzkoušet práci s GitLabem, pak se přepněte na větev `demo` a vyzkoušejte si odevzdání úloh z demo týdne.
+To keep the workspace organized and separate from the main configuration, each assignment is stored in its own dedicated branch rather than in subfolders:
 
-- V případě dotazů či jakýchkoli problémů se neváhejte ozvat vyučujícím v diskuzním fóru v ISu.
+- `main`: Contains this README and general repository configuration.
+- `01`, `02`, `03`... : Individual branches containing the code and files for that specific assignment number.
+
+## Details
+- **Language:** Python
+- **Origin:** Synced from the faculty GitLab repository as a personal backup.
+
+---
+*Note: To view a specific assignment, switch to the corresponding branch using the dropdown menu in the top left corner of the GitHub interface.*
